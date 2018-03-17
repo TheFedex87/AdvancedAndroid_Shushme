@@ -56,6 +56,10 @@ public class Geofencing implements ResultCallback {
     }
 
     public void registerAllGeofences(){
+        if (googleApiClient == null || !googleApiClient.isConnected() ||
+                mGeofenceList == null || mGeofenceList.size() == 0) {
+            return;
+        }
         try {
             LocationServices.GeofencingApi.addGeofences(googleApiClient,
                     getGeofencingRequest(),
@@ -66,6 +70,9 @@ public class Geofencing implements ResultCallback {
     }
 
     public void unRegisterAllGeofences(){
+        if (googleApiClient == null || !googleApiClient.isConnected())
+            return;
+
         try {
             LocationServices.GeofencingApi.removeGeofences(googleApiClient,
                     getGeofencePendingIntent()).setResultCallback(this);
