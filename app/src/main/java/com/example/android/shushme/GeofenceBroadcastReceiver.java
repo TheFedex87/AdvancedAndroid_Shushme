@@ -81,6 +81,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         builder.setContentText(context.getString(R.string.touch_to_relaunch));
         builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
         builder.setAutoCancel(true);
+        builder.setVibrate(new long[]{ 500});
         NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         nm.notify(0, builder.build());
