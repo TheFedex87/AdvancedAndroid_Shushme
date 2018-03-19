@@ -53,7 +53,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         // TODO (5) Call getGeofenceTransition to get the transition type and use AudioManager to set the
         // phone ringer mode based on the transition type. Feel free to create a helper method (setRingerMode)
         if(geofencingEvent.getGeofenceTransition() == Geofence.GEOFENCE_TRANSITION_ENTER){
-            setRingerMode(context, AudioManager.RINGER_MODE_SILENT);
+            setRingerMode(context, AudioManager.RINGER_MODE_VIBRATE);
         } else {
             setRingerMode(context, AudioManager.RINGER_MODE_NORMAL);
         }
@@ -81,7 +81,6 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         builder.setContentText(context.getString(R.string.touch_to_relaunch));
         builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
         builder.setAutoCancel(true);
-        builder.setVibrate(new long[]{ 500});
         NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         nm.notify(0, builder.build());
